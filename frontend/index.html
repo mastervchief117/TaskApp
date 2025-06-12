@@ -41,7 +41,7 @@
 
   <!-- SEKCJA: ZADANIA -->
   <section id="zadania-view" class="view hidden">
-    <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="showView('pulpit-view')" />
+    <img src="assets/arrow_back.svg" alt="Powrót" class="back-arrow" onclick="showView('pulpit-view')" />
     <h1 class="zadania-title">Zadania</h1>
 
     <div class="tabs">
@@ -61,10 +61,10 @@
 
   <!-- SEKCJA: DODAJ ZADANIE -->
   <section id="dodaj-zadanie" class="view hidden">
-    <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
+    <img src="assets/arrow_back.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
     <h1 class="dodaj-title">Dodaj zadanie</h1>
 
-    <form id="task-form" onsubmit="saveTask(event)">
+    <form id="task-form" onsubmit="zapiszZadanie(event)">
       <div class="form-group">
         <label for="title">Tytuł</label>
         <input type="text" id="title" />
@@ -118,7 +118,7 @@
       <span>Zadania</span>
     </div>
     <div class="nav-item" onclick="openSettings()">
-      <img src="assets/Icon.svg" alt="Ustawienia" />
+      <img src="assets/settings.svg" alt="Ustawienia" />
       <span>Ustawienia</span>
     </div>
   </nav>
@@ -155,10 +155,10 @@
 
   <!-- SEKCJA: EDYTUJ ZADANIE -->
   <section id="edytuj-zadanie" class="view hidden">
-    <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
+    <img src="assets/arrow_back.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
     <h1 class="dodaj-title">Edytuj zadanie</h1>
 
-    <form id="edit-form" onsubmit="saveEditedTask(event)">
+    <form id="edit-form" onsubmit="zapiszEdytowaneZadanie(event)">
       <div class="form-group">
         <label for="edit-title">Tytuł</label>
         <input type="text" id="edit-title" />
@@ -193,12 +193,13 @@
 
       <div class="form-buttons">
         <button type="submit" class="btn save">Zapisz</button>
-        <button type="button" class="btn delete" onclick="deleteTask()">Usuń zadanie</button>
+        <button type="button" class="btn delete" onclick="usunZadanie()">Usuń zadanie</button>
       </div>
 
       <button type="button" class="btn cancel" onclick="goBack()">Anuluj</button>
     </form>
   </section>
+
 <!-- SEKCJA: KALENDARZ (POPUP NADLAYOUT) -->
 <div id="calendar-overlay" class="calendar-overlay hidden">
   <div class="calendar-popup">
@@ -213,10 +214,10 @@
 
 <!-- SEKCJA: USTAWIENIA -->
 <section id="ustawienia-view" class="view hidden">
-  <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
+  <img src="assets/arrow_back.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
   <h1 class="dodaj-title">Ustawienia</h1>
 
-  <form id="settings-form" onsubmit="saveSettings(event)">
+  <form id="settings-form" onsubmit="zapiszUstawienia(event)">
     <div class="form-group">
       <label for="email">E-mail</label>
       <input type="text" id="email" />

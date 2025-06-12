@@ -66,11 +66,6 @@ function zapiszZadanie(event) {
     showFormError("Uzupełnij wszystkie pola");
     return;
   }
-  const emailInput = document.getElementById('start-email');
-if (emailInput && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
-  showFormError("Wpisz poprawny adres e-mail");
-  return;
-}
 
   const taskElement = document.createElement('div');
   taskElement.classList.add('task-card');
@@ -438,7 +433,9 @@ function zapiszEdytowaneZadanie(e) {
   selectedPriorityColor = null;
 
   updateTaskCounters();
+  zapiszZadaniaDoLocalStorage();
   showView('zadania-view');
+  switchTab(true);
 }
 
 /* ====== USUWANIE ZADANIA ====== */
@@ -546,6 +543,8 @@ window.onload = () => {
   const savedEmail = localStorage.getItem('userEmail');
 
   document.getElementById('start-screen').classList.add('loaded');
+  document.getElementById('save-task-button').addEventListener('click', zapiszZadanie);
+  document.getElementById('save-settings-button').addEventListener('click', zapiszUstawienia);
 
   if (!savedName || !savedEmail) {
     showView('start-screen');

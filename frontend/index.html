@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aplikacja Zadania</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- SEKCJA: PULPIT -->
+  <section id="pulpit-view" class="view">
+    <h1 class="welcome">Witaj, Użytkownik1!</h1>
+    <div class="date-section">
+      <img src="assets/Calendar.svg" alt="Kalendarz" class="calendar-icon" />
+      <div class="date-text">
+        <div id="current-date" class="date-day">--.--.----</div>
+        <div id="current-weekday" class="date-weekday">---</div>
+      </div>
+    </div>
+
+    <section class="card blue-card" onclick="showView('zadania-view', null, 'nadchodzące')">
+      <img src="assets/Ikona - Zegar.svg" alt="Zegar" class="card-icon" />
+      <div class="card-content">
+        <h2>Nadchodzące</h2>
+        <p><span id="count-upcoming">0 zadań</span></p>
+      </div>
+    </section>
+
+    <section class="card gray-card" onclick="showView('zadania-view', null, 'ukonczone')">
+      <img src="assets/Ikona - Check.svg" alt="Check" class="card-icon" />
+      <div class="card-content">
+        <h2>Ukończone</h2>
+        <p><span id="count-done">0 zadań</span></p>
+      </div>
+    </section>
+
+    <img src="assets/Przycisk - Dodaj.svg" alt="Dodaj zadanie" class="add-button" onclick="openAddTask('pulpit-view')" />
+  </section>
+
+  <!-- SEKCJA: ZADANIA -->
+  <section id="zadania-view" class="view hidden">
+    <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="showView('pulpit-view')" />
+    <h1 class="zadania-title">Zadania</h1>
+
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab(true)">Nadchodzące</div>
+      <div class="tab" onclick="switchTab(false)">Ukończone</div>
+    </div>
+
+    <img src="assets/Filter.svg" alt="Filtruj" class="filter-icon" onclick="openFilter()" />
+
+    <div id="task-content">
+      <div id="upcoming-tasks" class="task-list"></div>
+      <div id="done-tasks" class="task-list hidden"></div>
+    </div>    
+
+    <img src="assets/Przycisk - Dodaj.svg" alt="Dodaj zadanie" class="add-button" onclick="openAddTask('zadania-view')" />
+  </section>
+
+  <!-- SEKCJA: DODAJ ZADANIE -->
+  <section id="dodaj-zadanie" class="view hidden">
+    <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
+    <h1 class="dodaj-title">Dodaj zadanie</h1>
+
+    <form id="task-form" onsubmit="saveTask(event)">
+      <div class="form-group">
+        <label for="title">Tytuł</label>
+        <input type="text" id="title" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Opis</label>
+        <textarea id="description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Data</label>
+        <div class="select-wrapper" onclick="toggleCalendar('add')">
+          <span id="selected-date">--.--.----</span>
+          <img src="assets/Calendar-2.svg" class="icon small-icon" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Priorytet</label>
+        <div class="select-wrapper" onclick="togglePriorityDropdown()">
+          <span id="selected-priority">-</span>
+          <img src="assets/keyboard_arrow_down.svg" class="icon small-icon" />
+        </div>
+        <ul id="priority-options" class="dropdown" style="display: none;">
+          <li onclick="selectPriority('Wysoki', '#FE0000')">Wysoki</li>
+          <li onclick="selectPriority('Średni', '#FEA500')">Średni</li>
+          <li onclick="selectPriority('Niski', '#D1D5DB')">Niski</li>
+        </ul>
+      </div>
+
+      <div class="form-buttons">
+        <button type="submit" class="btn save">Zapisz</button>
+        <button type="button" class="btn cancel" onclick="goBack()">Anuluj</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- SEKCJA: KALENDARZ (POPUP) -->
+  <div id="calendar-popup" class="popup hidden"></div>
+  <!-- SEKCJA: NAWIGACJA DOLNA -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" onclick="showView('pulpit-view', this)">
+      <div class="nav-highlight"></div>
+      <img src="assets/menu.svg" alt="Pulpit" />
+      <span>Pulpit</span>
+    </div>
+    <div class="nav-item" onclick="showView('zadania-view', this)">
+      <div class="nav-highlight"></div>
+      <img src="assets/list.svg" alt="Zadania" />
+      <span>Zadania</span>
+    </div>
+    <div class="nav-item" onclick="openSettings()">
+      <img src="assets/Icon.svg" alt="Ustawienia" />
+      <span>Ustawienia</span>
+    </div>
+  </nav>
+
+  <!-- SEKCJA: POPUP FILTROWANIA -->
+  <div id="filter-overlay" class="calendar-overlay hidden">
+    <div class="filter-popup">
+      <div class="filter-header">
+        <span>Filtruj</span>
+        <img src="assets/X.svg" class="calendar-nav rotate" onclick="closeFilter()" />
+      </div>
+
+      <div id="filter-options-upcoming">
+        <p>Sortuj według daty:</p>
+        <label><input type="radio" name="date-sort" value="asc" checked> Od najbliższej</label><br>
+        <label><input type="radio" name="date-sort" value="desc"> Od najdalszej</label><br><br>
+
+        <p>Priorytet:</p>
+        <label><input type="radio" name="priority-filter" value="all" checked> Wszystkie</label><br>
+        <label><input type="radio" name="priority-filter" value="#FE0000"> Wysoki</label><br>
+        <label><input type="radio" name="priority-filter" value="#FEA500"> Średni</label><br>
+        <label><input type="radio" name="priority-filter" value="#D1D5DB"> Niski</label><br>
+      </div>
+
+      <div id="filter-options-done" class="hidden">
+        <p>Sortuj według daty ukończenia:</p>
+        <label><input type="radio" name="done-sort" value="desc" checked> Od najnowszego</label><br>
+        <label><input type="radio" name="done-sort" value="asc"> Od najstarszego</label><br>
+      </div>
+
+      <button onclick="applyFilter()" class="btn save" style="margin-top: 16px;">Zastosuj</button>
+    </div>
+  </div>
+
+  <!-- SEKCJA: EDYTUJ ZADANIE -->
+  <section id="edytuj-zadanie" class="view hidden">
+    <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
+    <h1 class="dodaj-title">Edytuj zadanie</h1>
+
+    <form id="edit-form" onsubmit="saveEditedTask(event)">
+      <div class="form-group">
+        <label for="edit-title">Tytuł</label>
+        <input type="text" id="edit-title" />
+      </div>
+
+      <div class="form-group">
+        <label for="edit-description">Opis</label>
+        <textarea id="edit-description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Data</label>
+        <div class="select-wrapper" onclick="toggleCalendar('edit')">
+          <span id="edit-selected-date">--.--.----</span>
+          <img src="assets/Calendar-2.svg" class="icon small-icon" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Priorytet</label>
+        <div class="select-wrapper" onclick="toggleEditPriorityDropdown()">
+          <span id="edit-selected-priority">-</span>
+          <img src="assets/keyboard_arrow_down.svg" class="icon small-icon" />
+        </div>
+
+        <ul id="edit-priority-options" class="dropdown hidden">
+          <li onclick="selectEditPriority('Wysoki', '#FE0000')">Wysoki</li>
+          <li onclick="selectEditPriority('Średni', '#FEA500')">Średni</li>
+          <li onclick="selectEditPriority('Niski', '#D1D5DB')">Niski</li>
+        </ul>
+      </div>
+
+      <div class="form-buttons">
+        <button type="submit" class="btn save">Zapisz</button>
+        <button type="button" class="btn delete" onclick="deleteTask()">Usuń zadanie</button>
+      </div>
+
+      <button type="button" class="btn cancel" onclick="goBack()">Anuluj</button>
+    </form>
+  </section>
+<!-- SEKCJA: KALENDARZ (POPUP NADLAYOUT) -->
+<div id="calendar-overlay" class="calendar-overlay hidden">
+  <div class="calendar-popup">
+    <div class="calendar-header">
+      <img src="assets/Chevron left.svg" alt="Poprzedni miesiąc" class="calendar-nav" onclick="prevMonth()" />
+      <span id="calendar-month">Czerwiec 2025</span>
+      <img src="assets/Chevron right.svg" alt="Następny miesiąc" class="calendar-nav" onclick="nextMonth()" />
+    </div>
+    <div id="calendar-days" class="calendar-days"></div>
+  </div>
+</div>  
+
+<!-- SEKCJA: USTAWIENIA -->
+<section id="ustawienia-view" class="view hidden">
+  <img src="assets/icon.svg" alt="Powrót" class="back-arrow" onclick="goBack()" />
+  <h1 class="dodaj-title">Ustawienia</h1>
+
+  <form id="settings-form" onsubmit="saveSettings(event)">
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="text" id="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="username">Imię</label>
+      <input type="text" id="username" />
+    </div>
+
+    <div class="form-group">
+      <label>Motyw</label>
+      <div class="select-wrapper">
+        <span>Jasny</span>
+        <!-- ✳️: w przyszłości można zrobić rozwijaną listę motywów -->
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Ekran początkowy</label>
+      <div class="dropdown-wrapper" style="position: relative;">
+        <div class="select-wrapper" onclick="toggleStartScreenDropdown()">
+          <span id="selected-start-screen">Pulpit</span>
+          <img src="assets/keyboard_arrow_down.svg" class="icon small-icon" />
+        </div>
+        <div id="start-screen-options" class="dropdown hidden">
+          <div onclick="selectStartScreen('Pulpit')">Pulpit</div>
+          <div onclick="selectStartScreen('Lista zadań')">Lista zadań</div>
+        </div>
+      </div>
+    </div>    
+
+    <div class="form-group">
+      <label>Format daty</label>
+      <div class="select-wrapper">
+        <span>DD.MM.RRRR</span>
+        <!-- ✳️: można w przyszłości pozwolić użytkownikowi wybrać format -->
+      </div>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" class="btn save">Zapisz</button>
+      <button type="button" class="btn cancel" onclick="goBack()">Anuluj</button>
+    </div>
+  </form>
+</section>
+
+<!-- SEKCJA: EKRAN POWITALNY -->
+<div id="form-error" class="form-alert hidden"></div>
+<section id="start-screen" class="view">
+  <img src="assets/Tło.svg" alt="Tło" class="background-image" />
+  <link rel="preload" href="assets/Tło.svg" as="image">
+  <h1 class="welcome-title">Witaj w Twojej aplikacji do zarządzania zadaniami!</h1>
+  <p class="welcome-subtitle">Zacznij organizować swój
+    dzień już teraz.</p>    
+  <form id="start-form" class="start-form" onsubmit="zapiszDaneStartowe(event)">
+    <label for="start-name">Imię</label>
+    <input type="text" id="start-name" placeholder="Wpisz swoje imię" />
+
+    <label for="start-email">E-mail</label>
+    <input type="text" id="start-email" placeholder="Twój adres e-mail" />
+
+    <button type="submit" class="btn start-btn">Zacznij korzystać</button>
+  </form>
+
+  <p class="info-note">Twoje dane pozostają na
+    Twoim urządzeniu</p>
+    </section>
+
+<!-- SKRYPTY -->
+<script src="script.js"></script>
+</body>
+</html>

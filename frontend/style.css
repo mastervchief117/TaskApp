@@ -1,0 +1,1154 @@
+/* ====== USTAWIENIA OGÓLNE LAYOUTU ====== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.view {
+  width: 100%;
+  max-width: 393px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 20px 14px 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ====== POWITANIE I DATA ====== */
+
+.welcome {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.date-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.calendar-icon {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.date-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.date-day, .date-weekday {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.date-day {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.date-weekday {
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+/* ====== KARTY (NADCHODZĄCE/UKOŃCZONE ====== */
+
+.card {
+  max-width: 366px;
+  width: 100%;
+  height: 110px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.card-icon {
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+}
+
+.card-content {
+  margin-left: 16px;
+}
+
+.card-content h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-content p {
+  font-size: 14px;
+  font-weight: 300;
+  margin: 12px 0 0;
+}
+
+.blue-card {
+  background-color: rgba(6, 131, 221, 0.5);
+}
+
+.gray-card {
+  background-color: #F5F5F5;
+}
+
+/* ====== PRZYCISK DODAWANIA ZADANIA ====== */
+
+.add-button {
+  position: fixed;
+  bottom: 76px;
+  right: 16px;
+  width: 64px;
+  height: 64px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* ====== NAWIGACJA DOLNA ====== */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 64px;
+  background-color: rgba(6, 131, 221, 0.5);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 10;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #625B71;
+  position: relative;
+  height: 100%;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav-item img {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 4px;
+}
+
+.nav-highlight {
+  position: absolute;
+  top: 6px;
+  width: 56px;
+  height: 32px;
+  background-color: rgba(6, 131, 221, 0.4);
+  border-radius: 16px;
+  z-index: -1;
+  display: none;
+}
+
+.nav-item.active .nav-highlight {
+  display: block;
+}
+
+/* ====== STRZAŁKA POWROTU ====== */
+
+.back-arrow {
+  position: fixed;
+  left: 23px;
+  top: 29px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* ====== NAGŁÓWEK WIDOKU ZADAŃ ====== */
+
+.zadania-title {
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 90px;
+  margin-left: 22px;
+  align-self: flex-start;
+}
+
+/* ====== ZAKŁADKI (NADCHODZĄCE/UKOŃCZONE) ====== */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.tab {
+  width: 175px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #F5F5F5;
+  font-size: 15px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+}
+
+.tab.active {
+  background-color: rgba(6, 131, 221, 0.5);
+  border: 1px solid #D1D5DB;
+  box-sizing: border-box;
+}
+
+/* ====== KOMUNIKAT "BRAK ZADAŃ" ====== */
+
+.empty-message {
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  margin-top: 80px;
+}
+
+/* ====== IKONY ====== */
+
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.small-icon {
+  width: 18px;
+  height: 12px;
+}
+
+/* ====== FORMULARZE: GRUPY I POLA ====== */
+
+.form-group {
+  margin-bottom: 32px;
+}
+
+.form-group label {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid black;
+  resize: none;
+  background: white;
+}
+
+/* ====== FORMULARZE: LISTY ROZWIJANE ====== */
+
+.select-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  background: white;
+}
+
+.dropdown {
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+.dropdown li {
+  padding: 10px 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background: #f0f0f0;
+}
+
+#priority-options.dropdown {
+  width: 350px;
+  max-height: 96px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 5;
+}
+
+/* ====== FORMULARZE: PRZYCISKI ====== */
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.cancel {
+  background: transparent;
+  color: black;
+}
+
+.btn.save {
+  background: #0683DD;
+  color: white;
+}
+
+/* ====== WIDOK: DODAJ ZADANIE ====== */
+
+#dodaj-zadanie {
+  padding: 34px 22px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+}
+
+#dodaj-zadanie .back-arrow {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 30px;
+}
+
+.dodaj-title {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+#dodaj-zadanie .form-group {
+  width: 100%;
+}
+
+#dodaj-zadanie .form-group label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#dodaj-zadanie input[type="text"],
+#dodaj-zadanie textarea,
+#dodaj-zadanie .select-wrapper {
+  width: 350px;
+  font-size: 18px;
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: white;
+  cursor: pointer;
+}
+
+#dodaj-zadanie textarea {
+  height: 107px;
+  resize: none;
+}
+
+#dodaj-zadanie input[type="text"] {
+  height: 48px;
+  cursor: pointer;
+}
+
+#dodaj-zadanie .select-wrapper {
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#dodaj-zadanie .icon.small-icon {
+  width: 24px;
+  height: 24px;
+}
+
+#dodaj-zadanie .form-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 110px;
+}
+
+#dodaj-zadanie .btn.save {
+  width: 350px;
+  height: 48px;
+  background: #0683DD;
+  color: white;
+}
+
+#dodaj-zadanie .btn.cancel {
+  background: transparent;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  border: none;
+  width: auto;
+  height: auto;
+}
+
+/* ====== WIDOK: LISTA ZADAŃ ====== */
+
+#task-content {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 393px;
+  margin: 0 auto;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+
+.task-list:empty::before {
+  content: "Brak zadań";
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  display: block;
+  margin-top: 60px;
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  max-width: 366px;
+  width: 100%;
+  height: 105px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* ZMNIEJSZONE odstępy */
+  height: 100%;
+}
+
+.task-checkbox {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.task-checkbox:checked {
+  background-color: white;
+  border: 2px solid #ccc;
+}
+
+.task-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  top: 50%;
+  left: 50%;
+}
+
+.task-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+  margin-top: 2px;
+}
+
+.task-title {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  gap: 0px;
+}
+
+.task-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.task-date {
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+  margin-top: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+.task-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: #444;
+  margin-top: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+.task-edit {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/* ====== POPUP KALENDARZA ====== */
+
+.calendar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* zamglenie */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.calendar-popup {
+  background: white;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 16px;
+  width: 320px;
+  box-sizing: border-box;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.calendar-nav {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.calendar-days div {
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calendar-days .day:hover {
+  background-color: #eee;
+}
+
+/* ====== ALERT BŁĘDU ====== */
+
+.form-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  background: #ff4444;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 30;
+}
+
+.form-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  background: #ff4444;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 30;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ====== POPUP FILTROWANIA ZADAŃ ====== */
+
+.filter-popup {
+  background: white;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 20px;
+  width: 320px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.rotate {
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+.filter-popup p {
+  margin: 8px 0 4px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.filter-popup label {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 6px;
+}
+.filter-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 22px;
+  top: 153px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#filter-overlay .btn.save {
+  background-color: #0683DD;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 350px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ====== DZIEŃ DZISIEJSZY W KALENDARZU ====== */
+
+.day.today {
+  border: 2px solid #0683DD;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* ====== WIDOK: EDYTUJ ZADANIE ====== */
+
+#edytuj-zadanie {
+  padding: 34px 22px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+}
+
+#edytuj-zadanie .form-group {
+  width: 100%;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+#edytuj-zadanie .form-group label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#edytuj-zadanie input[type="text"],
+#edytuj-zadanie textarea,
+#edytuj-zadanie .select-wrapper {
+  width: 350px;
+  font-size: 18px;
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: white;
+  height: 48px;
+  cursor: pointer;
+}
+
+#edytuj-zadanie textarea {
+  resize: none;
+  height: 107px;
+}
+
+#edytuj-zadanie .select-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+#edytuj-zadanie .icon.small-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ====== ROZWIJANA LISTA PRIORYTETU (EDYCJA) ====== */
+
+#edit-priority-options.dropdown {
+  position: absolute;
+  top: calc(100% + 4px); /* lekki margines pod select-wrapper */
+  left: 0;
+  width: 100%;
+  max-height: 96px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+#edit-priority-options.dropdown div {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#edit-priority-options.dropdown div:hover {
+  background-color: #eee;
+}
+
+/* ====== PRZYCISKI FORMULARZA (EDYCJA) ====== */
+
+#edytuj-zadanie .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 350px;
+  gap: 20px;
+  margin-top: 115px;
+}
+
+#edytuj-zadanie .btn.save,
+#edytuj-zadanie .btn.delete {
+  width: 165px;
+  height: 48px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#edytuj-zadanie .btn.save {
+  background: #0683DD;
+  color: white;
+}
+
+#edytuj-zadanie .btn.delete {
+  background: rgba(254, 0, 0, 0.58);
+  color: white;
+}
+
+#edytuj-zadanie .btn.cancel {
+  background: transparent;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  border: none;
+  display: block;
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+/* ====== WIDOK: USTAWIENIA ====== */
+
+#ustawienia-view {
+  padding: 34px 22px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#ustawienia-view .form-group {
+  width: 100%;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+#ustawienia-view .form-group label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#ustawienia-view input[type="text"],
+#ustawienia-view .select-wrapper {
+  width: 350px;
+  height: 48px;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: white;
+  cursor: pointer;
+}
+
+#ustawienia-view .select-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: default;
+}
+
+#ustawienia-view .icon.small-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+#start-screen-options.dropdown div {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#start-screen-options.dropdown div:hover {
+  background-color: #eee;
+}
+
+#ustawienia-view .dropdown {
+  width: 350px;
+  max-height: 96px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  position: relative;
+  margin-top: 8px;
+  z-index: 5;
+}
+
+#ustawienia-view .dropdown div {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#ustawienia-view .dropdown div:hover {
+  background-color: #eee;
+}
+
+#ustawienia-view .form-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 64px;
+}
+
+#ustawienia-view .btn.save {
+  width: 350px;
+  height: 48px;
+  background: #0683DD;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+#ustawienia-view .btn.cancel {
+  background: transparent;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  border: none;
+  margin: 0;
+  text-align: center;
+  display: block;
+}
+
+#start-screen-options.dropdown {
+  position: absolute;
+  top: calc(100% + 4px); /* lekki margines pod select-wrapper */
+  left: 0;
+  width: 100%;
+  max-height: 96px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+/* ====== WIDOK: EKRAN STARTOWY (POPRAWIONY) ====== */
+
+#start-screen {
+  position: relative;
+  width: 393px;
+  min-height: 852px;
+  padding: 34px 22px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#start-screen .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 393px;
+  height: 852px;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.welcome-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #00083F;
+  text-align: center;
+  margin-top: 60px;
+  line-height: 1.2;
+}
+
+.welcome-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.4;
+  margin: 24px 0 40px;
+  white-space: pre-line;
+}
+
+.start-form {
+  background: white;
+  border-radius: 25px;
+  padding: 30px 20px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.start-form label {
+  font-size: 18px;
+  font-weight: 400;
+  align-self: flex-start;
+}
+
+.start-form input {
+  width: 100%;
+  height: 41px;
+  border: 1px solid rgba(136, 143, 145, 0.7);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.btn.start-btn {
+  background-color: #0683DD;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  height: 48px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.info-note {
+  font-size: 15px;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 30px;
+  color: black;
+  white-space: pre-line;
+  line-height: 1.4;
+}
+
+#start-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background-image: url("assets/Tło.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#start-screen.loaded {
+  visibility: visible;
+}
+
+.form-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  background: #888F91; /* szary */
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 30;
+}
+
+.hidden {
+  display: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

@@ -21,6 +21,7 @@
 
 ## 📦 Struktura projektu
 
+```
 TaskApp/
 │
 ├── README.md
@@ -39,6 +40,7 @@ TaskApp/
 │   ├── High_Fidelity_Wireframes.fig
 │   ├── User_flow.png
 │   └── User_flow.drawio
+```
 
 ## 🧪 Testy użyteczności
 
